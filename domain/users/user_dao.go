@@ -2,7 +2,9 @@ package users
 
 import (
 	"fmt"
+	"github.com/kaitus/bookstore_users-api-golang/utils/date_utils"
 	"github.com/kaitus/bookstore_users-api-golang/utils/errors"
+	"github.com/kaitus/bookstore_users-api-golang/datasources/mysql/users_db"
 )
 
 var (
@@ -10,6 +12,9 @@ var (
 )
 
 func (user *User) Get() *errors.RestError {
+	if err := users_db.Client.Ping(); err != nil {
+		panic(err)
+	}
 	result := usersDB[user.Id]
 	if result == nil {
 		return errors.NewNotFoundError(fmt.Sprintf("user %d not found ", user.Id))
@@ -30,6 +35,7 @@ func (user *User) Save() *errors.RestError {
 		}
 		return errors.NewBadRequest(fmt.Sprintf("user %d already exist", user.Id))
 	}
+	user.DateCreated = date_utils.GetNowString()
 	usersDB[user.Id] =user
 	return nil
 }

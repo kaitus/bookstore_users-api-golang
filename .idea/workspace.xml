@@ -20,18 +20,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="db4c6d87-fe65-4aad-bfb7-2aa1f86b2c19" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/bookstore_users-api-golang.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/application.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/url_mappings.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/controllers/ping/ping_controller.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/controllers/users/user_controller.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/domain/users/user_dao.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/domain/users/user_dto.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/main.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/services/user_service.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/utils/errors/rest_errors.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/datasources/mysql/users_db/users_db.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/utils/date_utils/date_utils.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/domain/users/user_dao.go" beforeDir="false" afterPath="$PROJECT_DIR$/domain/users/user_dao.go" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -70,6 +62,7 @@
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\HP\go\src\github.com\kaitus\bookstore_users-api-golang\utils\date_utils" />
       <recent name="C:\Users\HP\go\src\github.com\kaitus\bookstore_users-api-golang\controllers\users" />
       <recent name="C:\Users\HP\go\src\github.com\kaitus\bookstore_users-api-golang\controllers\ping" />
     </key>
@@ -78,6 +71,12 @@
     <configuration name="go build github.com/kaitus/bookstore_users-api-golang" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true" nameIsGenerated="true">
       <module name="bookstore_users-api-golang" />
       <working_directory value="$PROJECT_DIR$" />
+      <envs>
+        <env name="mysql_users_username" value="root" />
+        <env name="mysql_users_password" value="dummypassword" />
+        <env name="mysql_users_host" value="192.168.99.100:3306" />
+        <env name="mysql_users_schema" value="users_db" />
+      </envs>
       <kind value="PACKAGE" />
       <filePath value="$PROJECT_DIR$/main.go" />
       <package value="github.com/kaitus/bookstore_users-api-golang" />
@@ -107,6 +106,10 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="WindowStateProjectService">
+    <state x="223" y="67" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1606085313658">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="223" y="67" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1536.824@0.0.1536.824" timestamp="1606085313658" />
     <state x="524" y="115" key="#xdebugger.evaluate" timestamp="1606077068831">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
@@ -115,58 +118,45 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state width="788" height="466" key="DebuggerActiveHint/0.0.1536.824@0.0.1536.824" timestamp="1606076831589" />
-    <state width="1493" height="261" key="GridCell.Tab.0.bottom" timestamp="1606076700252">
+    <state x="496" y="45" width="551" height="633" key="EnvironmentVariablesDialog" timestamp="1606085311019">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="261" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1606076700252" />
-    <state width="1493" height="261" key="GridCell.Tab.0.center" timestamp="1606076700251">
+    <state x="496" y="45" width="551" height="633" key="EnvironmentVariablesDialog/0.0.1536.824@0.0.1536.824" timestamp="1606085311019" />
+    <state width="1493" height="195" key="GridCell.Tab.0.bottom" timestamp="1606084667260">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="261" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1606076700251" />
-    <state width="1493" height="261" key="GridCell.Tab.0.left" timestamp="1606076700251">
+    <state width="1493" height="195" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1606084667260" />
+    <state width="1493" height="195" key="GridCell.Tab.0.center" timestamp="1606084667260">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="261" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1606076700251" />
-    <state width="1493" height="261" key="GridCell.Tab.0.right" timestamp="1606076700252">
+    <state width="1493" height="195" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1606084667260" />
+    <state width="1493" height="195" key="GridCell.Tab.0.left" timestamp="1606084667260">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="261" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1606076700252" />
-    <state width="1493" height="261" key="GridCell.Tab.1.bottom" timestamp="1606076711353">
+    <state width="1493" height="195" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1606084667260" />
+    <state width="1493" height="195" key="GridCell.Tab.0.right" timestamp="1606084667260">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="261" key="GridCell.Tab.1.bottom/0.0.1536.824@0.0.1536.824" timestamp="1606076711353" />
-    <state width="1493" height="261" key="GridCell.Tab.1.center" timestamp="1606076711353">
+    <state width="1493" height="195" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1606084667260" />
+    <state width="1493" height="261" key="GridCell.Tab.1.bottom" timestamp="1606084597878">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="261" key="GridCell.Tab.1.center/0.0.1536.824@0.0.1536.824" timestamp="1606076711353" />
-    <state width="1493" height="261" key="GridCell.Tab.1.left" timestamp="1606076711353">
+    <state width="1493" height="261" key="GridCell.Tab.1.bottom/0.0.1536.824@0.0.1536.824" timestamp="1606084597878" />
+    <state width="1493" height="261" key="GridCell.Tab.1.center" timestamp="1606084597878">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="261" key="GridCell.Tab.1.left/0.0.1536.824@0.0.1536.824" timestamp="1606076711353" />
-    <state width="1493" height="261" key="GridCell.Tab.1.right" timestamp="1606076711353">
+    <state width="1493" height="261" key="GridCell.Tab.1.center/0.0.1536.824@0.0.1536.824" timestamp="1606084597878" />
+    <state width="1493" height="261" key="GridCell.Tab.1.left" timestamp="1606084597878">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="261" key="GridCell.Tab.1.right/0.0.1536.824@0.0.1536.824" timestamp="1606076711353" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="DlvLineBreakpoint">
-          <url>file://$PROJECT_DIR$/controllers/users/user_controller.go</url>
-          <line>18</line>
-          <option name="timeStamp" value="1" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="DlvLineBreakpoint">
-          <url>file://$PROJECT_DIR$/services/user_service.go</url>
-          <line>8</line>
-          <option name="timeStamp" value="2" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="DlvLineBreakpoint">
-          <url>file://$PROJECT_DIR$/domain/users/user_dao.go</url>
-          <line>12</line>
-          <option name="timeStamp" value="3" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
+    <state width="1493" height="261" key="GridCell.Tab.1.left/0.0.1536.824@0.0.1536.824" timestamp="1606084597878" />
+    <state width="1493" height="261" key="GridCell.Tab.1.right" timestamp="1606084597878">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="1493" height="261" key="GridCell.Tab.1.right/0.0.1536.824@0.0.1536.824" timestamp="1606084597878" />
+    <state x="320" y="141" key="com.intellij.xdebugger.impl.breakpoints.ui.BreakpointsDialogFactory$2" timestamp="1606077176697">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="320" y="141" key="com.intellij.xdebugger.impl.breakpoints.ui.BreakpointsDialogFactory$2/0.0.1536.824@0.0.1536.824" timestamp="1606077176697" />
   </component>
 </project>
