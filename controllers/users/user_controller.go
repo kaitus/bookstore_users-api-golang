@@ -1,12 +1,14 @@
 package users
 
 import (
+	"net/http"
+	"strconv"
+
 	"github.com/gin-gonic/gin"
+	"github.com/kaitus/bookstore_oauth-api-go/oauth"
 	"github.com/kaitus/bookstore_users-api-golang/domain/users"
 	"github.com/kaitus/bookstore_users-api-golang/services"
 	"github.com/kaitus/bookstore_users-api-golang/utils/errors"
-	"net/http"
-	"strconv"
 )
 
 func getUserId(userIdParam string) (int64, *errors.RestError) {
@@ -18,6 +20,11 @@ func getUserId(userIdParam string) (int64, *errors.RestError) {
 }
 
 func Get(c *gin.Context) {
+	if err := oauth.AutenticateRequest(c.Request); err != nil {
+		c.JSON(err.Status, err)
+		return
+	}
+
 	userId, userErr := getUserId(c.Param("user_id"))
 	if userErr != nil {
 		c.JSON(userErr.Status, userErr)
@@ -30,10 +37,15 @@ func Get(c *gin.Context) {
 		return
 	}
 
-	c.JSON(http.StatusOK, user.Marshall(c.GetHeader("X-Public") == "true"))
+	if oauth.GetCallerId(c.Request) == user.Id {
+		c.JSON(http.StatusOK, user.Marshall(false))
+		return
+	}
+
+	c.JSON(http.StatusOK, user.Marshall(oauth.IsPublic(c.Request)))
 }
 
-func Create(c *gin.Context)  {
+func Create(c *gin.Context) {
 	var user users.User
 	if err := c.ShouldBindJSON(&user); err != nil {
 		restErr := errors.NewBadRequest("Invalid Json Body")
@@ -49,7 +61,7 @@ func Create(c *gin.Context)  {
 	c.JSON(http.StatusCreated, result.Marshall(c.GetHeader("X-Public") == "true"))
 }
 
-func Update(c *gin.Context)  {
+func Update(c *gin.Context) {
 	userId, userErr := getUserId(c.Param("user_id"))
 	if userErr != nil {
 		c.JSON(userErr.Status, userErr)
@@ -99,4 +111,19 @@ func Search(c *gin.Context) {
 	}
 
 	c.JSON(http.StatusOK, users.Marshall(c.GetHeader("X-Public") == "true"))
+}
+
+func Login(c *gin.Context) {
+	var request users.LoginRequest
+	if err := c.ShouldBindJSON(&request); err != nil {
+		restErr := errors.NewBadRequest("invalid json body")
+		c.JSON(restErr.Status, restErr)
+		return
+	}
+	user, err := services.UsersService.LoginUser(request)
+	if err != nil {
+		c.JSON(err.Status, err)
+		return
+	}
+	c.JSON(http.StatusOK, user.Marshall(c.GetHeader("X-Public") == "true"))
 }
